@@ -32,7 +32,7 @@ jobs:
       
         pip install -e . --progress-bar off && pip list | grep dash
         
-        npm run lint
+        
         python setup.py install
         npm run citest.unit
         
