@@ -29,9 +29,9 @@ jobs:
         pip install -e . --no-cache-dir -r requires-install.txt -r requires-dev.txt -r requires-testing.txt --progress-bar off
         python -m pip install --upgrade pip
         set -eo pipefail
-        cd dash/dash-renderer && renderer build && cd ../../
+      
         pip install -e . --progress-bar off && pip list | grep dash
-        npm install --production && npm run initialize
+        
         npm run lint
         python setup.py install
         npm run citest.unit
