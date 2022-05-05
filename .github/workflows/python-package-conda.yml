@@ -26,8 +26,8 @@ jobs:
       run: |
         conda install pytest
         cd components/dash-html-components
-        rm -rf /var/lib/apt/lists/lock
-        apt-get update -y
+        
+        
         apt-get install -y unzip openjdk-11-jre-headless xvfb libxi6 libgconf-2-4
         curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
         echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
