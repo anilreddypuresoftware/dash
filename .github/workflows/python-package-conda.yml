@@ -25,7 +25,7 @@ jobs:
     - name: Test with pytest
       run: |
         conda install pytest
-        cd components/dash-html-components
+        
         
         
         apt-get install -y unzip openjdk-11-jre-headless xvfb libxi6 libgconf-2-4
