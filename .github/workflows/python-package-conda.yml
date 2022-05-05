@@ -25,14 +25,17 @@ jobs:
     - name: Test with pytest
       run: |
         conda install pytest
-        
-        pip install -e . --no-cache-dir -r requires-install.txt -r requires-dev.txt -r requires-testing.txt --progress-bar off
-        python -m pip install --upgrade pip
-        set -eo pipefail
+        cd components/dash-html-components
+        apt-get update -y
+        apt-get install -y unzip openjdk-11-jre-headless xvfb libxi6 libgconf-2-4
+        curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
+        echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+        apt-get -y update
+        apt-get -y install google-chrome-stable
+        wget https://chromedriver.storage.googleapis.com/85.0.4183.87/chromedriver_linux64.zip && unzip chromedriver_linux64.zip && mv chromedriver /usr/bin && rm -v chromedriver_linux64.zip
+        python -m pip install --upgrade pip && python -m pip install dash[testing]
+        npm run test
+              
       
-        pip install -e . --progress-bar off && pip list | grep dash
-        
-        
-        python setup.py install
-        npm run citest.unit
+  
         
